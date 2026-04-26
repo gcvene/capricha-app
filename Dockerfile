@@ -7,34 +7,22 @@ COPY assets/ ./assets/
 COPY gulpfile.js babel.config.json ./
 RUN npx gulp compile
 
-# Stage 2: Production runtime (PHP-FPM + Nginx)
+# Stage 2: Production runtime (PHP-FPM + Nginx via supervisord)
 FROM php:8.4-fpm-alpine
 
-RUN apk add --no-cache \
-        nginx \
-        supervisor \
-        libpng-dev \
-        libxml2-dev \
-        oniguruma-dev \
-        freetype-dev \
-        libjpeg-turbo-dev \
-        icu-dev \
-        libzip-dev \
-        curl \
-    && docker-php-ext-configure gd --with-freetype --with-jpeg \
-    && docker-php-ext-install -j$(nproc) \
-        curl \
+# install-php-extensions handles Alpine package resolution and skips pre-compiled extensions
+ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
+RUN chmod +x /usr/local/bin/install-php-extensions \
+    && install-php-extensions \
         gd \
-        mbstring \
         mysqli \
-        pdo \
         pdo_mysql \
-        simplexml \
-        fileinfo \
         intl \
-        xml \
         zip \
-    && rm -rf /tmp/*
+        bcmath \
+        exif
+
+RUN apk add --no-cache nginx supervisor
 
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
