@@ -47,6 +47,20 @@
  *
  */
 
+// Load .env for local development (production uses OS env vars set via flyctl secrets)
+if (file_exists(__DIR__ . '/.env')) {
+    foreach (file(__DIR__ . '/.env', FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES) as $line) {
+        if (str_starts_with(trim($line), '#') || !str_contains($line, '=')) {
+            continue;
+        }
+        [$key, $value] = array_map('trim', explode('=', $line, 2));
+        if (!empty($key) && !array_key_exists($key, $_ENV)) {
+            $_ENV[$key] = $value;
+            putenv("$key=$value");
+        }
+    }
+}
+
 if (!file_exists(__DIR__ . '/config.php')) {
     die(
         'The root "config.php" file is missing, please copy "config-sample.php" to "config.php" and update it with your server data.'

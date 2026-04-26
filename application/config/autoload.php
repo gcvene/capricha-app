@@ -67,6 +67,7 @@ $autoload['helper'] = [
     'array',
     'asset',
     'config',
+    'crypto',
     'date',
     'debug',
     'env',

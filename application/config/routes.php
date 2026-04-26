@@ -59,6 +59,11 @@ $route['translate_uri_dashes'] = FALSE;
 
 $route['health'] = 'health/index';
 
+// Inbound webhooks (Asaas payments + Meta/WhatsApp)
+$route['webhooks/asaas']['post'] = 'inbound_webhooks/asaas';
+$route['webhooks/meta']['get']   = 'inbound_webhooks/meta_verify';
+$route['webhooks/meta']['post']  = 'inbound_webhooks/meta';
+
 /*
 | -------------------------------------------------------------------------
 | FRAME OPTIONS HEADERS
