@@ -1,0 +1,28 @@
+# fly.toml para a máquina MySQL do Capricha
+# Deploy com: flyctl deploy --config infra/mysql.fly.toml
+#
+# Esta app fica na mesma org que capricha-app e é acessível internamente
+# em capricha-mysql.internal:3306 via rede privada do Fly.io (6PN).
+# Nenhuma porta é exposta publicamente.
+
+app = 'capricha-mysql'
+primary_region = 'gru'
+
+[build]
+  image = 'mysql:8.0'
+
+[[vm]]
+  size = 'shared-cpu-1x'
+  memory = '256mb'
+
+# Sem [http_service]: MySQL só é acessível via rede privada interna do Fly.io.
+# A rede 6PN roteia qualquer porta TCP entre apps da mesma organização
+# sem configuração adicional de serviço.
+
+[metrics]
+  # MySQL expõe métricas internas — desabilitado no MVP
+  port = 0
+
+[[mounts]]
+  source = 'mysql_data'
+  destination = '/var/lib/mysql'
