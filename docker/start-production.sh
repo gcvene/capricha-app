@@ -1,8 +1,9 @@
 #!/bin/sh
 set -e
 
-# Validate required secrets before starting
-for var in APP_URL DB_HOST DB_PASSWORD CRYPTO_KEY ASAAS_API_KEY ASAAS_WEBHOOK_TOKEN WHATSAPP_APP_SECRET WHATSAPP_WEBHOOK_VERIFY_TOKEN; do
+# Validate only what is strictly needed to generate config.php and start the app.
+# Asaas/WhatsApp secrets are validated lazily when those features are actually used.
+for var in APP_URL DB_HOST DB_PASSWORD; do
     eval val=\$$var
     if [ -z "$val" ]; then
         echo "ERROR: Required environment variable $var is not set." >&2
@@ -30,7 +31,7 @@ class Config
 }
 EOF
 
-# Set correct permissions on storage
+# Set correct permissions on storage (mounted volume may be owned by root on first boot)
 chown -R www-data:www-data /var/www/html/storage
 chmod -R 755 /var/www/html/storage
 

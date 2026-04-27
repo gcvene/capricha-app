@@ -57,7 +57,8 @@ $route['404_override'] = '';
 
 $route['translate_uri_dashes'] = FALSE;
 
-$route['health'] = 'health/index';
+$route['health']    = 'health/index';
+$route['health/db'] = 'health/db';
 
 // Inbound webhooks (Asaas payments + Meta/WhatsApp)
 $route['webhooks/asaas']['post'] = 'inbound_webhooks/asaas';
