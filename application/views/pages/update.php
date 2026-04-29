@@ -1,9 +1,9 @@
 <!doctype html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
 
-    <title>Update | Easy!Appointments</title>
+    <title>Atualização | Capricha</title>
 
     <link rel="stylesheet" type="text/css" href="<?= asset_url('assets/css/themes/default.min.css') ?>">
     <link rel="icon" type="image/x-icon" href="<?= asset_url('assets/img/favicon.ico') ?>">
@@ -13,7 +13,7 @@
 <body>
 <header>
     <div class="container">
-        <h1 class="page-title">Easy!Appointments Update</h1>
+        <h1 class="page-title">Atualização do Capricha</h1>
     </div>
 </header>
 
@@ -22,13 +22,13 @@
         <div class="col">
             <?php if (vars('success')): ?>
                 <div class="jumbotron">
-                    <h1 class="display-4">Success!</h1>
+                    <h1 class="display-4">Concluído!</h1>
                     <p class="lead">
-                        The database got updated successfully.
+                        Banco de dados atualizado com sucesso.
                     </p>
                     <hr class="my-4">
                     <p>
-                        You can now use the latest Easy!Appointments version.
+                        Você já pode usar a versão mais recente do Capricha.
                     </p>
                     <a href="<?= site_url('about') ?>" class="btn btn-success btn-large">
                         <i class="fas fa-wrench me-2"></i>
@@ -37,22 +37,18 @@
                 </div>
             <?php else: ?>
                 <div class="jumbotron">
-                    <h1 class="display-4">Failure!</h1>
+                    <h1 class="display-4">Falha!</h1>
                     <p class="lead">
-                        There was an error during the update process.
+                        Ocorreu um erro durante o processo de atualização.
                     </p>
                     <hr class="my-4">
                     <p>
-                        Please restore your database backup.
+                        Por favor, restaure o backup do banco de dados.
                     </p>
                     <a href="<?= site_url('login') ?>" class="btn btn-success btn-large">
                         <i class="fas fa-wrench me-2"></i>
                         <?= lang('backend_section') ?>
                     </a>
-
-                    <p>
-                        Please restore your database backup.
-                    </p>
                 </div>
 
                 <div class="well text-start">
@@ -64,7 +60,7 @@
 </div>
 
 <footer>
-    Powered by <a href="https://easyappointments.org">Easy!Appointments</a>
+    <a href="https://capricha.app.br">Capricha</a>
 </footer>
 
 <script src="<?= asset_url('assets/vendor/@fortawesome-fontawesome-free/fontawesome.min.js') ?>"></script>

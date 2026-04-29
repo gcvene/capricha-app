@@ -3,7 +3,7 @@
 <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
 
-    <title>Installation | Easy!Appointments</title>
+    <title>Instalação | Capricha</title>
 
     <link rel="icon" type="image/x-icon" href="<?= asset_url('assets/img/favicon.ico') ?>">
     <link rel="stylesheet" type="text/css" href="<?= asset_url('assets/css/themes/default.min.css') ?>">
@@ -17,25 +17,19 @@
 
 <header>
     <div class="container">
-        <h1 class="page-title">Easy!Appointments Installation</h1>
+        <h1 class="page-title">Instalação do Capricha</h1>
     </div>
 </header>
 
 <div class="content container h-100">
     <div class="welcome">
-        <h3>Welcome to the Easy!Appointments installation page.</h3>
+        <h3>Bem-vindo à instalação do Capricha!</h3>
         <p>
-            This page will help you set the main settings of your Easy!Appointments installation. You will be able to
-            edit these settings and many more in the backend session of your system. Remember to use the
-            <strong class="text-primary"><?= site_url('user/login') ?></strong> URL to connect to the backend section
-            of Easy!Appointments.
+            Esta página vai configurar as definições principais da sua conta. Você poderá editar estas e outras
+            configurações no painel administrativo. Use a URL
+            <strong class="text-primary"><?= site_url('user/login') ?></strong> para acessar o painel.
 
-            If you face any problems during the usage of Easy!Appointments you can always check the
-            <a href="https://easyappointments.org/docs.html">Documentation</a> and
-            <a href="https://groups.google.com/group/easy-appointments">Support Group</a> for getting help. You may also
-            submit new issues on
-            <a href="https://github.com/alextselegidis/easyappointments/issues">GitHub Issues</a>
-            in order to help our development process.
+            Se tiver problemas, entre em contato com o suporte pelo WhatsApp.
         </p>
     </div>
 
@@ -168,18 +162,17 @@
     <br>
 
     <p>
-        You will be able to set your business logic in the backend settings page after the installation is complete.
+        Após a instalação, você poderá configurar seus horários, serviços e equipe no painel.
         <br>
-        Press the following button to complete the installation process.
+        Clique no botão abaixo para concluir a instalação.
     </p>
 
     <br>
 
     <div class="mb-2">
-        <h3>License</h3>
-        Easy!Appointments is licensed under the <span class="badge bg-secondary">GPL-3.0 license</span>. By using the
-        code
-        of Easy!Appointments in any way <br> you agree with the terms described in the following url:
+        <h3>Licença</h3>
+        O Capricha é baseado no Easy!Appointments, licenciado sob a <span class="badge bg-secondary">licença GPL-3.0</span>.
+        Ao usar este software, você concorda com os termos em:
         <a href="https://www.gnu.org/licenses/gpl-3.0.en.html">https://www.gnu.org/licenses/gpl-3.0.en.html</a>
     </div>
 
@@ -187,12 +180,12 @@
 
     <button type="button" id="install" class="btn btn-primary">
         <i class="icon-white icon-ok me-2"></i>
-        Install Easy!Appointments
+        Instalar Capricha
     </button>
 </div>
 
 <footer>
-    Powered by <a href="https://easyappointments.org">Easy!Appointments</a>
+    <a href="https://capricha.app.br">Capricha</a> &bull; baseado em <a href="https://easyappointments.org">Easy!Appointments</a> (GPL-3.0)
 </footer>
 
 <?php component('js_vars_script'); ?>

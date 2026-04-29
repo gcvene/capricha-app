@@ -12,9 +12,9 @@
  */
 ?>
 
-<html lang="en">
+<html lang="pt-BR">
 <head>
-    <title><?= lang('appointment_cancelled_title') ?> | Easy!Appointments</title>
+    <title><?= lang('appointment_cancelled_title') ?> | Capricha</title>
 </head>
 <body style="font: 13px arial, helvetica, tahoma;">
 
@@ -175,14 +175,11 @@
 
     <div id="footer" style="padding: 10px; text-align: center; margin-top: 10px;
                 border-top: 1px solid #EEE; background: #FAFAFA;">
-        Powered by
-        <a href="https://easyappointments.org" style="text-decoration: none;">
-            Easy!Appointments
-        </a>
-        |
         <a href="<?= e($settings['company_link']) ?>" style="text-decoration: none;">
             <?= e($settings['company_name']) ?>
         </a>
+        &bull; Agendamento online por
+        <a href="https://capricha.app.br" style="text-decoration: none;">Capricha</a>
     </div>
 </div>
 
