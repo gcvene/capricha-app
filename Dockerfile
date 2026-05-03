@@ -22,7 +22,7 @@ RUN chmod +x /usr/local/bin/install-php-extensions \
         bcmath \
         exif
 
-RUN apk add --no-cache nginx supervisor rclone dcron
+RUN apk add --no-cache nginx supervisor rclone dcron mysql-client
 
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 

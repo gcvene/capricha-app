@@ -1,18 +1,21 @@
 #!/bin/sh
+# Backup diário MySQL → Cloudflare R2
+# Roda no container da app; conecta ao MySQL via capricha-mysql.internal
 set -eu
 
 TIMESTAMP=$(TZ=America/Sao_Paulo date +%Y%m%d_%H%M)
-BACKUP_FILE="/tmp/capricha_${TIMESTAMP}.sql.gz"
+DUMP_FILE="/tmp/capricha_${TIMESTAMP}.sql"
+BACKUP_FILE="${DUMP_FILE}.gz"
 RCLONE_CONF=$(mktemp /tmp/rcloneXXXXXX)
 
 cleanup() {
-    rm -f "${BACKUP_FILE}" "${RCLONE_CONF}"
+    rm -f "${DUMP_FILE}" "${BACKUP_FILE}" "${RCLONE_CONF}"
 }
 trap cleanup EXIT
 
 echo "[backup] Iniciando dump — ${TIMESTAMP}"
 
-# Config rclone gerada em runtime a partir das env vars (nunca persiste no repo)
+# Config rclone gerada em runtime (nunca persiste no repo)
 cat > "${RCLONE_CONF}" << EOF
 [r2]
 type = s3
@@ -25,7 +28,8 @@ no_check_bucket = true
 EOF
 chmod 600 "${RCLONE_CONF}"
 
-# Dump + compress
+# Dump para arquivo intermediário — erro do mysqldump é capturado por set -e
+# (pipe para gzip oculta falhas no busybox ash, arquivo intermediário não)
 mysqldump \
     --host="${DB_HOST}" \
     --port="${DB_PORT:-3306}" \
@@ -34,7 +38,9 @@ mysqldump \
     --single-transaction \
     --routines \
     --triggers \
-    "${DB_NAME}" | gzip > "${BACKUP_FILE}"
+    "${DB_NAME}" > "${DUMP_FILE}"
+
+gzip "${DUMP_FILE}"
 
 SIZE=$(du -h "${BACKUP_FILE}" | cut -f1)
 echo "[backup] Dump concluído: ${SIZE}"
