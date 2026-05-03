@@ -93,7 +93,12 @@ $route['webhooks/meta']['post']  = 'inbound_webhooks/meta';
 |
 */
 
-header('Access-Control-Allow-Origin: ' . ($_SERVER['HTTP_ORIGIN'] ?? '*')); // NOTICE: Change this header to restrict CORS access.
+$_allowed_origins = [
+    'https://capricha.app.br',
+    'https://www.capricha.app.br',
+];
+$_request_origin = $_SERVER['HTTP_ORIGIN'] ?? '';
+header('Access-Control-Allow-Origin: ' . (in_array($_request_origin, $_allowed_origins, TRUE) ? $_request_origin : $_allowed_origins[0]));
 
 header('Access-Control-Allow-Credentials: "true"');
 

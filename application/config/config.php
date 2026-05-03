@@ -384,10 +384,16 @@ $config['sess_regenerate_destroy'] = TRUE;
 | 'cookie_secure' =  Cookies will only be set if a secure HTTPS connection exists.
 |
 */
-$config['cookie_prefix'] = '';
-$config['cookie_domain'] = '';
-$config['cookie_path'] = '/';
-$config['cookie_secure'] = strpos($config['base_url'], 'https') !== FALSE;
+$config['cookie_prefix']   = '';
+$config['cookie_domain']   = '';
+$config['cookie_path']     = '/';
+$config['cookie_secure']   = strpos($config['base_url'], 'https') !== FALSE;
+$config['cookie_httponly'] = TRUE;
+
+// Força SameSite=Lax e HttpOnly nos cookies de sessão PHP
+ini_set('session.cookie_samesite', 'Lax');
+ini_set('session.cookie_httponly', '1');
+ini_set('session.cookie_secure',   strpos($config['base_url'], 'https') !== FALSE ? '1' : '0');
 
 /*
 |--------------------------------------------------------------------------
