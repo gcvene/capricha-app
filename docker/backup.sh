@@ -3,7 +3,7 @@ set -eu
 
 TIMESTAMP=$(TZ=America/Sao_Paulo date +%Y%m%d_%H%M)
 BACKUP_FILE="/tmp/capricha_${TIMESTAMP}.sql.gz"
-RCLONE_CONF=$(mktemp /tmp/rclone_XXXXXX.conf)
+RCLONE_CONF=$(mktemp)
 
 cleanup() {
     rm -f "${BACKUP_FILE}" "${RCLONE_CONF}"
