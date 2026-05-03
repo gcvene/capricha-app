@@ -1,0 +1,3 @@
+# Backup diário MySQL → Cloudflare R2
+# 6h UTC = 3h BRT (America/Sao_Paulo, UTC-3 fixo desde 2019)
+0 6 * * * root /usr/local/bin/backup.sh >> /proc/1/fd/1 2>&1

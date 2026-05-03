@@ -22,7 +22,7 @@ RUN chmod +x /usr/local/bin/install-php-extensions \
         bcmath \
         exif
 
-RUN apk add --no-cache nginx supervisor
+RUN apk add --no-cache nginx supervisor rclone dcron
 
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
@@ -41,7 +41,10 @@ RUN chown -R www-data:www-data storage \
 COPY docker/nginx/nginx.prod.conf /etc/nginx/http.d/default.conf
 COPY docker/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 COPY docker/start-production.sh /usr/local/bin/start-production
-RUN chmod +x /usr/local/bin/start-production
+COPY docker/backup.sh /usr/local/bin/backup.sh
+COPY docker/crontab /etc/cron.d/capricha-backup
+RUN chmod +x /usr/local/bin/start-production /usr/local/bin/backup.sh \
+    && chmod 0644 /etc/cron.d/capricha-backup
 
 EXPOSE 80
 
