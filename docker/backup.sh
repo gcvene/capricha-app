@@ -30,7 +30,7 @@ chmod 600 "${RCLONE_CONF}"
 
 # Dump para arquivo intermediário — erro do mysqldump é capturado por set -e
 # (pipe para gzip oculta falhas no busybox ash, arquivo intermediário não)
-mysqldump \
+mariadb-dump \
     --host="${DB_HOST}" \
     --port="${DB_PORT:-3306}" \
     --user="${DB_USERNAME}" \
