@@ -35,6 +35,7 @@ mysqldump \
     --port="${DB_PORT:-3306}" \
     --user="${DB_USERNAME}" \
     --password="${DB_PASSWORD}" \
+    --skip-ssl \
     --single-transaction \
     --routines \
     --triggers \
